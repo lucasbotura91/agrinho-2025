@@ -66,44 +66,46 @@ const perguntas = [
   }
 ];
 
-let indiceAtual = 0;
-let pontuacao = 0;
-
+let indiceAtual = 0;let pontuacao = 0;
 function mostrarPergunta() {
-  const q = perguntas[indiceAtual];
-  document.getElementById("pergunta").textContent = q.pergunta;
-
-  const opcoesDiv = document.getElementById("opcoes");
-  opcoesDiv.innerHTML = "";
-
-  q.opcoes.forEach((opcao, i) => {
-    const botao = document.createElement("button");
-    botao.textContent = opcao;
-    botao.onclick = () => verificarResposta(i);
-    opcoesDiv.appendChild(botao);
-  });
-}
-
+const q = perguntas[indiceAtual];
+document.getElementById("pergunta").textContent = q.pergunta;
+const opcoesDiv = document.getElementById("opcoes");
+opcoesDiv.innerHTML = "";
+q.opcoes.forEach((opcao, i) => {
+const botao = document.createElement("button");
+botao.textContent = opcao;
+botao.onclick = () => verificarResposta(i);
+opcoesDiv.appendChild(botao);});}
 function verificarResposta(i) {
-  if (i === perguntas[indiceAtual].correta) {
-    pontuacao++;
-  }
-  document.querySelectorAll("#opcoes button").forEach(btn => btn.disabled = true);
-}
-
+if (i === perguntas[indiceAtual].correta) {pontuacao++;}
+document.querySelectorAll("#opcoes button").forEach(btn => btn.disabled = true);}
 function proximaPergunta() {
-  indiceAtual++;
-  if (indiceAtual < perguntas.length) {
-    mostrarPergunta();
-  } else {
-    mostrarResultado();
-  }
+indiceAtual++;
+if (indiceAtual < perguntas.length) {
+mostrarPergunta();} else {mostrarResultado();}
 }
-
-function mostrarResultado() {
-  document.getElementById("quiz").classList.add("hidden");
-  document.getElementById("resultado").classList.remove("hidden");
-  document.getElementById("resultado").innerHTML = `<h2>Você acertou ${pontuacao} de ${perguntas.length} perguntas!</h2>`;
-}
-
+function mostrarResultado() {document.getElementById("quiz").classList.add("hidden");
+document.getElementById("resultado").classList.remove("hidden");
+document.getElementById("resultado").innerHTML = `<h2>Você acertou ${pontuacao} de ${perguntas.length} perguntas!</h2>`;}
 mostrarPergunta();
+body {font-family: Arial, sans-serif;
+background-color: #f0f8e0;
+text-align: center;
+padding: 20px;}
+.container {max-width: 600px;
+margin: auto;
+background-color: white;
+border-radius: 12px;
+padding: 20px;
+box-shadow: 0 0 10px gray;}
+button {margin-top: 10px;
+padding: 10px;
+border: none;
+border-radius: 8px;
+background-color: #4CAF50;
+color: white;
+cursor: pointer;}
+.hidden {
+display: none;
+}
